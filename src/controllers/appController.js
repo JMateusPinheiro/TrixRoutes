@@ -7,10 +7,27 @@ angular
         $scope.waypoints = [];
         $scope.inputOrigin = "";
         $scope.inputDestination = "";
-        $scope.listWaypoints = "";
+        var stringWaypoints = "";
         
         $scope.addWaypoint = (waypoint) => {
-            $scope.listWaypoints.push(waypoint);
+            routeAPI.getLocation(waypoint)
+            .then((data)=>{
+                console.log(data.data)
+                $scope.waypoints.push(data.data);
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+
+            if(stringWaypoints == ""){
+                stringWaypoints = waypoint;
+            }else{
+                console.log("entrou");
+                stringWaypoints += "|" + waypoint
+            }
+
+            console.log(stringWaypoints)
+            console.log($scope.waypoints)
             delete $scope.waypoint
         }
 
@@ -26,10 +43,9 @@ angular
         }
 
         $scope.searchRoute = () => {
-            $scope.path = []
-            $scope.origin = null
-            $scope.destination = null
-            $scope.waypoints = [];
+            $scope.path = [];
+            $scope.origin = null;
+            $scope.destination = null;
 
             //Searching origin
             console.log("Searching Route");
@@ -53,7 +69,7 @@ angular
             })
 
             //Cauculating Polyline
-            routeAPI.getPath($scope.inputOrigin, $scope.inputDestination, $scope.listWaypoints)
+            routeAPI.getPath($scope.inputOrigin, $scope.inputDestination, stringWaypoints)
             .then((data)=>{
                 console.log(data);
                 $scope.path = data.data

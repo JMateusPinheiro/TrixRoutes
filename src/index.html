@@ -15,25 +15,39 @@
         <div class="col-sm-4 side-left">
             <img class="logo" src="assets/trixlog.png" />
 
-            <div class="input-group mb-2 margin-left">
+            <div class="input-group mb-2 margins">
                 <input ng-model="inputOrigin" type="text" class="form-control" placeholder="Origem">
             </div>
-            <div class="input-group mb-2 margin-left">
+            <div class="input-group mb-2 margins">
                 <input ng-model="inputDestination" type="text" class="form-control" placeholder="Destino">
             </div>
-            <div class="input-group mb-2 margin-left">
-                <input ng-model="listWaypoints" type="text" class="form-control" placeholder="Adicionar Waypoint">
+            <div class="input-group mb-2 margins">
+                <input ng-model="waypoint" type="text" class="form-control" placeholder="Adicionar Waypoint">
                 <div class="input-group-append">
                     <button ng-click="addWaypoint(waypoint)" type="button" class="btn btn-primary btn-block">+</button>
                 </div>
             </div>
-            <div class="input-group-append margin-left">
-                <button ng-click="searchRoute()" type="button" class="btn btn-primary btn-block">Calcular Rota</button>
+            <div class="input-group-append margins">
+                <button ng-click="searchRoute()" ng-disabled="inputOrigin == &quot;&quot; || inputDestination == &quot;&quot;" type="button" class="btn btn-primary btn-block">Calcular Rota</button>
             </div>
+            
+            <table ng-show="waipoints.length != 0" class="table margins table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Waypoints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="w in waypoints">
+                        <td>{{ w.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     
         <map ng-if="origin != null" class="col-sm-8 side-right">
-            <marker ng-if="origin !=null && destination != null && path.length != 0" ></marker>
+            <marker ng-if="origin !=null && destination != null" ></marker>
+            <marker ng-if="waypoints != []" ></marker>
             <polyline ng-if="path.length !=0"></polyline>
         </map>
     </div>

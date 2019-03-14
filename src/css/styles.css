@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
 }
-.margin-left{
-    margin-left: 10px
+.margins{
+    margin-left: 10px;
+    margin-top: 10px
 }
