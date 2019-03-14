@@ -12,7 +12,6 @@ angular
         }).addTo(map);
     }
     var _marker = (origin, destination, waypoints) =>{
-        console.log(origin)
         //Marker for origin
         L.marker([origin.coords.lat, origin.coords.lng]).addTo(map)
                 .bindPopup(origin.name)

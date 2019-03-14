@@ -2,7 +2,7 @@ angular
     .module("TrixRoutes")
     .constant("config", {
 
-        urlAPI: "localhost:8080/TrixRoutesAPI",
+        urlAPI: "http://localhost:8080/TrixRoutesAPI",
         map:{            
             zoom: 10
         },
