@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TrixRoutes">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TrixRoutes</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div ng-controller="appController" class="row content">
+        <div class="col-sm-4 side-left">
+            <img class="logo" src="assets/trixlog.png" />
+        </div>
+    
+        <map ng-if="origin.length != 0" class="col-sm-8 side-right">
+            <marker ng-if="origin.length != 0"></marker>
+            <polyline ng-if="path.length != 0"></polyline>
+        </map>
+    </div>
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="./controllers/appController.js"></script>
+    <script src="./services/mapFactory.js"></script>
+    <script src="./services/routeAPIservice.js"></script>
+    <script src="./directives/mapDirective.js"></script>
+    <script src="./directives/markerDirective.js"></script>
+    <script src="./directives/polylineDirective.js"></script>
+</body>
+</html>
